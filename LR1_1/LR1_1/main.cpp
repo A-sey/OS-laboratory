@@ -38,7 +38,7 @@ int main()
 	int keyboard_speed;
 	int alt_tab;
 	// Цвета
-	int col[] = { COLOR_HIGHLIGHT, COLOR_INFOBK, COLOR_ACTIVECAPTION };
+	int col[] = { COLOR_HIGHLIGHT, COLOR_INACTIVEBORDER, COLOR_ACTIVECAPTION };
 	int size = sizeof(col) / sizeof(int);
 	int* color;
 	int* invert;
@@ -130,6 +130,7 @@ void Prnt(OSVERSIONINFOA ver)
 {
 	cout << "Основной номер версии: " << ver.dwMajorVersion << "\n";
 	cout << "Дополнительный номер версии: " << ver.dwMinorVersion << "\n";
+	cout << "Номер сборки ОС: " << ver.dwBuildNumber << "\n";
 	cout << "Номер платформы: " << ver.dwPlatformId << "\n";
 }
 
@@ -144,9 +145,9 @@ void Prnt(int size, int* num, int* old, int* mod)
 {
 	for (int i = 0; i < size; i++)
 	{
-		cout << "Старый цвет " << num[i] << " параметра: ";
-		cout << old[i] << "\n";
-		cout << "Новый цвет " << num[i] << " параметра: ";
-		cout << mod[i] << "\n";
+		cout << "Старый цвет " << num[i] << " параметра в RGB: ";
+		cout << (old[i] & 255) << ":" << (old[i] >> 8 & 255) << ":" << (old[i] >> 16 & 255) << "\n";
+		cout << "Новый цвет " << num[i] << " параметра в RGB: ";
+		cout << (mod[i] & 255) << ":" << (mod[i] >> 8 & 255) << ":" << (mod[i] >> 16 & 255) << "\n";
 	}
 }
